@@ -4,18 +4,26 @@ import "../styles/globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import ContextProvider from "../contexts/ContextProvider";
 require("@solana/wallet-adapter-react-ui/styles.css");
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
 import themes from "../components/themes";
+import dynamic from "next/dynamic";
+
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  { ssr: false }
+);
 
 function MyApp({ Component, pageProps }: AppProps) {
   // Get OS-level preference for dark mode
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-  const [theme, setTheme] = useState(themes.light);
+  const [theme, setTheme] = useState(themes.dark);
   
   // create react use effect hook that sets dark mode to OS-level preference on load
   useEffect(() => {

@@ -40,7 +40,7 @@ export const WalletContextProvider: FC<{ children: ReactNode }> = ({
   }, []);
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={process.env.NEXT_PUBLIC_RPC_URL!}>
       <WalletProvider wallets={wallets} onError={onError} autoConnect={true}>
         <ReactUIWalletModalProvider>{children}</ReactUIWalletModalProvider>
       </WalletProvider>

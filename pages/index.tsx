@@ -1,15 +1,14 @@
 import type { NextPage } from "next";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Modal from "../components/Modal";
 import { toast } from "react-toastify";
 import Head from "next/head";
-
-// Default styles that can be overridden by your app
-require("@solana/wallet-adapter-react-ui/styles.css");
-
-import "react-toastify/dist/ReactToastify.css";
+import { Elusiv } from "elusiv-sdk";
+// import { topup } from "../utils/elusiv";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import Dashboard from "../components/Dashboard";
 
 const WalletMultiButtonDynamic = dynamic(
   async () =>
@@ -18,58 +17,65 @@ const WalletMultiButtonDynamic = dynamic(
 );
 
 const Home: NextPage = () => {
-  const notify = () =>
-    toast("🦄 Wow so easy!");
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [elusiv, setElusiv] = useState<Elusiv | null>(null);
+
+  const wallet = useWallet();
+  const { connection } = useConnection()
+
+  useEffect(() => {
+    setElusiv(null)
+    setInput("")
+  }, [wallet.publicKey])
+
+  const createElusivInstance = async () => {
+    setLoading(true);
+
+    if (wallet.publicKey && wallet.signMessage) {
+      const seed = Elusiv.hashPw(input);
+
+      try {
+        const signedSeed = await wallet.signMessage(new TextEncoder().encode(seed));
+        // Create the elusiv instance
+        const elusiv = await Elusiv.getElusivInstance(signedSeed, wallet.publicKey, connection);
+        setElusiv(elusiv)
+        toast.success("Logged in successfully");
+      } catch (error) {
+        console.log(error);
+        toast.error("Couldn't create Elusiv instance");
+      }
+    }
+
+    setLoading(false)
+  }
 
   return (
     <>
       <Head>
-        <title>Builderz Solana dApp Scaffold</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Elusiv | Private Payments</title>
+        <link rel="icon" href="/logo_transparent.png" />
       </Head>
-      <div className={styles.container}>
-        <div className="mockup-window border bg-inherit p-[1.25rem]">
-          <div className="flex flex-col justify-center p-4 bg-inherit gap-4">
-            <div className={styles.iconContainer}>
-              <a
-                href="https://builderz.build"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                <Image
-                  src="/images/builderz-logo-b.png"
-                  height={60}
-                  width={50}
-                  style={{
-                    objectFit: "contain",
-                  }}
-                  alt="builderz"
-                />
-              </a>
-              <Image
-                width={75}
-                height={75}
-                src="/sol.png"
-                className={styles.icon}
-                alt="sol"
-              />
+
+      {!elusiv || !wallet.publicKey ? ( // Login
+        <div className={styles.container}>
+          <div className="p-12 rounded-lg bg-[#202327]">
+            <h2 className="mb-8">Login Elusiv</h2>
+            <WalletMultiButtonDynamic className="glow my-4 !w-full" />
+            <div className="text-sm">
+              {/* <p>Enter your elusive password</p> */}
+              <input type="password" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter Password" className="input w-full max-w-xs" required />
             </div>
-            <h1 className={styles.h1}>Hello Solana, meet Builderz 👋</h1>
-            <p className={styles.explain}>
-              Explore what you can do with Builderz&rsquo; brand new{" "}
-              <b>Builderz Solana dApp Scaffold</b>
-            </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-around  items-center py-8">
-              <button onClick={notify} className="btn glow-on-hover">
-                Notify!
-              </button>
-              <Modal />
-              <WalletMultiButtonDynamic className="btn glow" />
-            </div>
+            <div className="divider"></div>
+            <button onClick={createElusivInstance} className={"btn btn glass w-full my-2" + (loading && " loading")}>Login</button>
           </div>
         </div>
-      </div>
+        
+      ) : ( // Dashboard
+        <div className={styles.container}>
+          <Dashboard elusiv={elusiv} />
+        </div>
+      )}
     </>
   );
 };

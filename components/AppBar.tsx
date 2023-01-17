@@ -4,7 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import dynamic from "next/dynamic";
-import Drawer from "./Drawer";
 import ThemeSwitcherComponent from "./ThemeSwitcher";
 import { Logo } from "./Logo";
 
@@ -28,7 +27,6 @@ export default function PrimarySearchAppBar({ setTheme }: any) {
           <Box
             sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
-            <Drawer />
             <Logo />
           </Box>
           <Box sx={{ flexGrow: 1 }}>
@@ -41,7 +39,7 @@ export default function PrimarySearchAppBar({ setTheme }: any) {
             }}
           >
             <div className="flex ml-4 items-center gap-2">
-              <ThemeSwitcherComponent themeChanger={setTheme} />
+              {/* <ThemeSwitcherComponent themeChanger={setTheme} /> */}
               <WalletMultiButtonDynamic className="btn btn-outline glow my-4" />
             </div>
           </Box>

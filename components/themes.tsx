@@ -18,9 +18,9 @@ const darkTheme = createTheme({
     error: {
       main: red.A400,
     },
-    // background: {
-    //   default: "#fff",
-    // }
+    background: {
+      default: "#4C6B55",
+    }
   },
 });
 
