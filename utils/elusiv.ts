@@ -1,5 +1,5 @@
 import { Wallet, WalletContextState } from '@solana/wallet-adapter-react'
-import { Connection } from '@solana/web3.js'
+import { Connection, PublicKey } from '@solana/web3.js'
 import { Elusiv, TokenType } from 'elusiv-sdk'
 
 export const topup = async(elusiv: Elusiv, wallet: any, tokenType: any, amount: number) => {
@@ -20,3 +20,10 @@ export const withdraw = async(elusiv: Elusiv, tokenType: any, amount: number) =>
   return res;
 }
 
+export const send = async(elusiv: Elusiv, tokenType: any, amount: number, recipient: PublicKey) => {
+  const sendTx = await elusiv.buildSendTx(amount, recipient, tokenType );
+
+  const res = await elusiv.sendElusivTx(sendTx);
+
+  return res;
+}

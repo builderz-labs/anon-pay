@@ -35,34 +35,41 @@ export const useBalances = (elusiv: Elusiv, reload?: number) => {
     const fetchBalances = async() => {
       setLoading(true);
       
-      // SOL
-      const balanceSOL = await connection.getBalance(wallet.publicKey!);
-      setWalletBalanceSOL(balanceSOL / LAMPORTS_PER_SOL);
-      const privateBalanceSOL = await elusiv.getLatestPrivateBalance("LAMPORTS")
-      setElusivBalanceSOL(Number(privateBalanceSOL));
-      // USDC
-      const usdcAddress = getAssociatedTokenAddressSync(usdcMint, wallet.publicKey!);
-      const balanceUSDC = await tryGetBalance(connection, usdcAddress);
-      setWalletBalanceUSDC(balanceUSDC?.value?.uiAmount || 0)
-      const privateBalanceUSDC = await elusiv.getLatestPrivateBalance("USDC")
-      setElusivBalanceUSDC(Number(privateBalanceUSDC))
-      // USDT
-      const usdtAddress = getAssociatedTokenAddressSync(usdtMint, wallet.publicKey!);
-      const balanceUSDT = await tryGetBalance(connection, usdtAddress);
-      setWalletBalanceUSDT(balanceUSDT?.value?.uiAmount || 0)
-      const privateBalanceUSDT = await elusiv.getLatestPrivateBalance("USDT")
-      setElusivBalanceUSDT(Number(privateBalanceUSDT))
 
-      setLoading(false);
+      try {
+        // SOL
+        const balanceSOL = await connection.getBalance(wallet.publicKey!);
+        setWalletBalanceSOL(balanceSOL / LAMPORTS_PER_SOL);
+        const privateBalanceSOL = await elusiv.getLatestPrivateBalance("LAMPORTS")
+        setElusivBalanceSOL(Number(privateBalanceSOL));
+        // USDC
+        const usdcAddress = getAssociatedTokenAddressSync(usdcMint, wallet.publicKey!);
+        const balanceUSDC = await tryGetBalance(connection, usdcAddress);
+        setWalletBalanceUSDC(balanceUSDC?.value?.uiAmount || 0)
+        const privateBalanceUSDC = await elusiv.getLatestPrivateBalance("USDC")
+        setElusivBalanceUSDC(Number(privateBalanceUSDC))
+        // USDT
+        const usdtAddress = getAssociatedTokenAddressSync(usdtMint, wallet.publicKey!);
+        const balanceUSDT = await tryGetBalance(connection, usdtAddress);
+        setWalletBalanceUSDT(balanceUSDT?.value?.uiAmount || 0)
+        const privateBalanceUSDT = await elusiv.getLatestPrivateBalance("USDT")
+        setElusivBalanceUSDT(Number(privateBalanceUSDT))
 
+        setError(false)
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setError(true)
+        setLoading(false);
+      }
     }
 
-    if (wallet.publicKey) {
+    if (wallet.publicKey && elusiv) {
       console.log("Fetching balances");
       fetchBalances()
     }
 
-  }, [wallet.publicKey, reload])
+  }, [elusiv, reload])
 
   return {
     loading,

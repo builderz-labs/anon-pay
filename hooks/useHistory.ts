@@ -15,24 +15,26 @@ export const useHistory = (elusiv: Elusiv) => {
   useEffect(() => {
     const fetchHistory = async() => {
       setLoading(true);
+      setHistory([])
       
       try {
-        const history = await elusiv.getPrivateTransactions(3);        
+        const history = await elusiv.getPrivateTransactions(5);        
         setHistory(history);
         setError(false)
         setLoading(false);
       } catch (error) {
+        console.log(error);
         setError(true)
         setLoading(false);
       }
     }
 
-    if (wallet.publicKey) {
+    if (wallet.publicKey && elusiv) {
       console.log("Fetching history");
       fetchHistory()
     }
 
-  }, [wallet.publicKey])
+  }, [elusiv])
 
   return {
     loading,

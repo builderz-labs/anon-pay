@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [elusiv, setElusiv] = useState<Elusiv | null>(null);
-
+  
   const wallet = useWallet();
   const { connection } = useConnection()
 
@@ -31,9 +31,8 @@ const Home: NextPage = () => {
 
   const createElusivInstance = async () => {
     setLoading(true);
-
     if (wallet.publicKey && wallet.signMessage) {
-      const seed = Elusiv.hashPw(input);
+      const seed = Elusiv.hashPw(input);      
 
       try {
         const signedSeed = await wallet.signMessage(new TextEncoder().encode(seed));
@@ -45,6 +44,8 @@ const Home: NextPage = () => {
         console.log(error);
         toast.error("Couldn't create Elusiv instance");
       }
+    } else {
+      toast.error("Connection Wallet first")
     }
 
     setLoading(false)
