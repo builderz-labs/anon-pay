@@ -12,3 +12,11 @@ export const topup = async(elusiv: Elusiv, wallet: any, tokenType: any, amount: 
   return res
 }
 
+export const withdraw = async(elusiv: Elusiv, tokenType: any, amount: number) => {
+  const withdrawTx = await elusiv.buildWithdrawTx(amount, tokenType);
+
+  const res = await elusiv.sendElusivTx(withdrawTx)
+
+  return res;
+}
+

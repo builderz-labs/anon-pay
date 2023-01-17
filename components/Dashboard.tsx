@@ -5,7 +5,8 @@ import { useState, useEffect } from "react"
 import { useBalances } from "../hooks/useBalances";
 import { useHistory } from "../hooks/useHistory";
 
-import AddBalanceModal from "./AddBalanceModal";
+import AddWithdrawBalanceModal from "./AddWithdrawBalanceModal";
+import TransactionListItem from "./TransactionListItem";
 
 const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
 
@@ -17,15 +18,21 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
   console.log(history);
 
   return (
-    <div className="p-12 rounded-lg w-1/2 bg-[#374D3D]">
-      <h1>Dashboard</h1>
+    <div className="p-12 rounded-lg bg-[#374D3D]">
+      <div className="flex justify-between items-center">
+        <h1>Dashboard</h1>
+        <div className="space-x-4 justify-center">
+          <label htmlFor="add-balance" className="btn glass">Deposit</label>
+          <label htmlFor="add-balance" className="btn glass">Withdraw</label>
+          <label htmlFor="add-balance" className="btn glass">Send</label>
+        </div>
+      </div>
       <div className="divider"></div>
 
       {/* Body */}
-      <div className="flex">
+      <div className="flex space-x-8">
 
         <div className="flex flex-col">
-          <label htmlFor="add-balance" className="btn glass mb-4">Add Balance</label>
           {/* Balances */}
           <div className="stats bg-[#293a2e] stats-vertical text-left text-primary-content">
             <div className="stat">
@@ -49,9 +56,26 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
         </div>
         
         {/* History */}
-          
+        <div className="flex flex-col bg-[#fdf3d9] p-4 rounded-md text-gray-700">
+          <div>
+            <p className="text-left font-bold">Transaction History</p>
+            <div className="divider !mt-0"></div>
+          </div>
+          {!history.loading && !history.error && history.history.length ? (history.history.map(tx => (
+            <>
+            <TransactionListItem tx={tx} />
+            <div className="divider"></div>
+            </>
+          ))) : (
+            <>
+            {history.loading && <progress className="progress w-56"></progress>}
+            {history.error && <div className="alert alert-danger">{history.error}</div>}
+            {(history.history.length === 0 && !history.loading && !history.error) && <div className="alert alert-info">No transactions</div>}
+            </>
+          )}
+        </div>
       </div>
-      <AddBalanceModal elusiv={elusiv} />
+      <AddWithdrawBalanceModal elusiv={elusiv} />
     </div>
   )
 }

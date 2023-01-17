@@ -17,7 +17,7 @@ export const useHistory = (elusiv: Elusiv) => {
       setLoading(true);
       
       try {
-        const history = await elusiv.getPrivateTransactions(10);        
+        const history = await elusiv.getPrivateTransactions(3);        
         setHistory(history);
         setError(false)
         setLoading(false);

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useBalances } from "../hooks/useBalances";
 import { topup } from "../utils/elusiv";
 
-const AddBalanceModal = ({ elusiv } : { elusiv: Elusiv}) => {
+const AddWithdrawBalanceModal = ({ elusiv } : { elusiv: Elusiv}) => {
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("SOL");
 
@@ -30,6 +30,10 @@ const AddBalanceModal = ({ elusiv } : { elusiv: Elusiv}) => {
     try {
       const res = await topup(elusiv, wallet, tokenType, amount * LAMPORTS_PER_SOL);
       console.log(res);
+
+      const conf = await res.isConfirmed;
+      console.log(conf);
+      
       
       setReload((prev) => prev + 1)
       toast.success("Topup successful");
@@ -51,7 +55,6 @@ const AddBalanceModal = ({ elusiv } : { elusiv: Elusiv}) => {
           <div className="form-control">
             <div className="input-group">
               <select value={type} onChange={(e) => setType(e.target.value)} className="select select-bordered">
-                <option disabled selected>Pick Balance</option>
                 <option value={"SOL"}>SOL</option>
                 <option value={"USDC"}>USDC</option>
                 <option value={"USDT"}>USDT</option>
@@ -67,4 +70,4 @@ const AddBalanceModal = ({ elusiv } : { elusiv: Elusiv}) => {
   )
 }
 
-export default AddBalanceModal;
+export default AddWithdrawBalanceModal;
