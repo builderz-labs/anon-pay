@@ -57,7 +57,7 @@ const SendModal = ({ elusiv } : { elusiv: Elusiv}) => {
       <input type="checkbox" id="send" className="modal-toggle" />
       <label htmlFor="send" className="modal cursor-pointer">
         <label className="modal-box relative bg-[#fdf3d9] flex flex-col items-center justify-center" htmlFor="">
-          <p className="text-lg font-bold mb-4 text-gray-700 text-left">Topup your private balance</p>
+          <p className="text-lg font-bold mb-4 text-gray-700 text-left">Send private transaction</p>
           <div className="form-control">
             <div className="input-group">
               <select value={type} onChange={(e) => setType(e.target.value)} className="select select-bordered">
