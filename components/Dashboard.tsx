@@ -62,7 +62,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
         </div>
         
         {/* History */}
-        <div className="flex flex-col bg-[#fdf3d9] p-8 rounded-xl text-gray-700">
+        <div className="flex flex-col bg-[#fdf3d9] p-8 rounded-xl text-gray-700 mb-12">
           <div>
             <p className="text-left font-bold">Transaction History</p>
             <div className="divider !mt-0"></div>
@@ -75,8 +75,8 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
           ))) : (
             <>
             {history.loading && <progress className="progress md:w-96"></progress>}
-            {history.error && <div className="w-96 text-left">There was an error</div>}
-            {(history.history.length === 0 && !history.loading && !history.error) && <div className="w-96 text-left">No transactions yet</div>}
+            {history.error && <div className="md:w-96 text-left">There was an error</div>}
+            {(history.history.length === 0 && !history.loading && !history.error) && <div className="md:w-96 text-left">No transactions yet</div>}
             </>
           )}
         </div>
