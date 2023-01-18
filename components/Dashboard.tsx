@@ -24,10 +24,10 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
   const history = useHistory(localElusiv);
 
   return (
-    <div className="p-12 rounded-lg bg-[#374D3D]">
-      <div className="flex justify-between items-center">
-        <h1>Dashboard</h1>
-        <div className="space-x-4 justify-center">
+    <div className="p-12 rounded-lg bg-[#374D3D] w-fit mx-auto my-12">
+      <div className="md:flex justify-between items-center">
+        <h1 className="my-8">DASHBOARD</h1>
+        <div className="space-x-4 flex justify-center">
           <label htmlFor="deposit" className="btn glass">Deposit</label>
           <label htmlFor="withdraw" className="btn glass">Withdraw</label>
           <label htmlFor="send" className="btn glass">Send</label>
@@ -36,9 +36,9 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
       <div className="divider"></div>
 
       {/* Body */}
-      <div className="flex space-x-8">
+      <div className="md:flex md:space-x-8">
 
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-4">
           {/* Balances */}
           <div className="stats bg-[#293a2e] stats-vertical text-left text-primary-content">
             <div className="stat">
@@ -62,7 +62,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
         </div>
         
         {/* History */}
-        <div className="flex flex-col bg-[#fdf3d9] p-4 rounded-md text-gray-700">
+        <div className="flex flex-col bg-[#fdf3d9] p-8 rounded-xl text-gray-700">
           <div>
             <p className="text-left font-bold">Transaction History</p>
             <div className="divider !mt-0"></div>

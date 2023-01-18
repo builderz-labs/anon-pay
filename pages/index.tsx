@@ -73,7 +73,7 @@ const Home: NextPage = () => {
         </div>
         
       ) : ( // Dashboard
-        <div className={styles.container}>
+        <div className={""}>
           <Dashboard elusiv={elusiv} />
         </div>
       )}
