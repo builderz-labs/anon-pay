@@ -59,7 +59,7 @@ const Home: NextPage = () => {
       </Head>
 
       {!elusiv || !wallet.publicKey ? ( // Login
-        <div className={styles.container}>
+        <div className="flex items-center justify-center my-4 md:my-24">
           <div className="p-12 rounded-lg bg-[#202327]">
             <h2 className="mb-8">Login Elusiv</h2>
             <WalletMultiButtonDynamic className="glow my-4 !w-full" />
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
         </div>
         
       ) : ( // Dashboard
-        <div className={""}>
+        <div>
           <Dashboard elusiv={elusiv} />
         </div>
       )}
