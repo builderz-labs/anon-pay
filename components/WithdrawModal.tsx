@@ -64,7 +64,7 @@ const Withdraw = ({ elusiv } : { elusiv: Elusiv}) => {
                 <option value={"USDC"}>USDC</option>
                 <option value={"USDT"}>USDT</option>
               </select>
-              <input type="number" value={amount} onChange={((e) => setAmount(e.target.valueAsNumber))} className="input input-bordered max-w-xs" />
+              <input type="number" value={amount} onChange={((e) => setAmount(e.target.valueAsNumber))} className="input input-bordered w-28 md:w-56" />
               <button onClick={handleWithdraw} className={"btn " + (loading && " loading")}>Go</button>
             </div>
           </div>

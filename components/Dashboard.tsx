@@ -62,7 +62,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
         </div>
         
         {/* History */}
-        <div className="flex flex-col bg-[#fdf3d9] p-8 rounded-xl text-gray-700 mb-12">
+        <div className="flex flex-col bg-[#fdf3d9] p-8 rounded-xl text-gray-700 mb-4">
           <div>
             <p className="text-left font-bold">Transaction History</p>
             <div className="divider !mt-0"></div>
