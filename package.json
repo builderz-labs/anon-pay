@@ -31,7 +31,6 @@
     "next-themes": "^0.2.1",
     "react": "^18.2",
     "react-dom": "^18.2.0",
-    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.4.3",
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6"
@@ -39,7 +38,6 @@
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
-    "@types/react-helmet": "^6.1.6",
     "@types/styled-components": "^5.1.26",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.28.0",

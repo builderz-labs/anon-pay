@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
 import themes from "../components/themes";
 import dynamic from "next/dynamic";
-import Helmet from "react-helmet";
 
 const WalletMultiButtonDynamic = dynamic(
   async () =>
@@ -40,9 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ContextProvider>
         <CssBaseline enableColorScheme />
         <WalletModalProvider>
-          <Helmet>
-            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-          </Helmet>
           <AppBar setTheme={toggleDarkMode} />
           <Component {...pageProps} />
         </WalletModalProvider>
