@@ -24,7 +24,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
   const history = useHistory(localElusiv);
 
   return (
-    <div className="p-12 rounded-lg bg-[#374D3D] w-fit mx-auto my-12">
+    <div className="p-4 md:p-12 rounded-lg bg-[#374D3D] w-fit mx-auto my-12">
       <div className="md:flex justify-between items-center">
         <h1 className="my-8">DASHBOARD</h1>
         <div className="space-x-4 flex justify-center">
@@ -74,7 +74,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
             </>
           ))) : (
             <>
-            {history.loading && <progress className="progress w-96"></progress>}
+            {history.loading && <progress className="progress md:w-96"></progress>}
             {history.error && <div className="w-96 text-left">There was an error</div>}
             {(history.history.length === 0 && !history.loading && !history.error) && <div className="w-96 text-left">No transactions yet</div>}
             </>
