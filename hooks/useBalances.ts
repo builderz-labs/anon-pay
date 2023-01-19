@@ -34,7 +34,13 @@ export const useBalances = (elusiv: Elusiv, reload?: number) => {
   useEffect(() => {
     const fetchBalances = async() => {
       setLoading(true);
-      
+
+      setWalletBalanceSOL(0);
+      setElusivBalanceSOL(0);
+      setWalletBalanceUSDC(0);
+      setElusivBalanceUSDC(0);
+      setWalletBalanceUSDT(0);
+      setElusivBalanceUSDT(0);
 
       try {
         // SOL

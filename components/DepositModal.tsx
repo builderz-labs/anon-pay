@@ -42,8 +42,12 @@ const DepositModal = ({ elusiv } : { elusiv: Elusiv}) => {
       toast.success("Topup successful");
       setLoading(false)
 
-      res.isConfirmed.then(() => setReload((prev) => prev + 1))
+      await Promise.resolve(res.isConfirmed)
 
+      console.log("Tx is confirmed");
+      
+      setReload((prev) => prev + 1)
+      
     } catch (error) {
       console.log(error);
       setLoading(false)

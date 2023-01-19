@@ -28,6 +28,8 @@ const Home: NextPage = () => {
 
   const createElusivInstance = async () => {
     setLoading(true);
+    setElusiv(null)
+
     if (wallet.publicKey && wallet.signMessage) {
       const seed = Elusiv.hashPw(input);      
 

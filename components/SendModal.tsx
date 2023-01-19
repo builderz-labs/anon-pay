@@ -4,7 +4,7 @@ import { Elusiv } from "elusiv-sdk";
 import { useState, useEffect } from "react"
 import { toast } from "react-toastify";
 import { useBalances } from "../hooks/useBalances";
-import { send, topup } from "../utils/elusiv";
+import { send } from "../utils/elusiv";
 
 const SendModal = ({ elusiv } : { elusiv: Elusiv}) => {
 
@@ -43,7 +43,11 @@ const SendModal = ({ elusiv } : { elusiv: Elusiv}) => {
       toast.success("Transaction successful");
       setLoading(false)
 
-      res.isConfirmed.then(() => setReload((prev) => prev + 1))
+      await Promise.resolve(res.isConfirmed)
+
+      console.log("Tx is confirmed");
+      
+      setReload((prev) => prev + 1)
 
     } catch (error) {
       console.log(error);

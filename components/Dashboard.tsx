@@ -1,4 +1,3 @@
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { Elusiv } from "elusiv-sdk";
 import { useState, useEffect } from "react"
@@ -81,9 +80,9 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
           )}
         </div>
       </div>
-      <DepositModal elusiv={localElusiv} />
-      <WithdrawModal elusiv={localElusiv} />
-      <SendModal elusiv={localElusiv} />
+      <DepositModal elusiv={localElusiv!} />
+      <WithdrawModal elusiv={localElusiv!} />
+      <SendModal elusiv={localElusiv!} />
     </div>
   )
 }

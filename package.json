@@ -28,7 +28,7 @@
     "bignumber.js": "^9.1.1",
     "daisyui": "^2.42.0",
     "elusiv-sdk": "file:./elusiv-sdk-react-1.0.0.tgz",
-    "next": "^13",
+    "next": "13.1.2",
     "next-themes": "^0.2.1",
     "react": "^18.2",
     "react-dom": "^18.2.0",

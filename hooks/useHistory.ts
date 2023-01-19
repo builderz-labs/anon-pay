@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { getAssociatedTokenAddressSync } from "@solana/spl-token";
-import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { Elusiv, PrivateTxWrapper } from 'elusiv-sdk';
 
@@ -10,7 +8,6 @@ export const useHistory = (elusiv: Elusiv) => {
   const [history, setHistory] = useState<PrivateTxWrapper[]>([]);
 
   const wallet = useWallet();
-  const { connection } = useConnection();
 
   useEffect(() => {
     const fetchHistory = async() => {
@@ -34,7 +31,7 @@ export const useHistory = (elusiv: Elusiv) => {
       fetchHistory()
     }
 
-  }, [elusiv])
+  }, [elusiv]);
 
   return {
     loading,

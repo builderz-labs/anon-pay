@@ -22,8 +22,6 @@ const Withdraw = ({ elusiv } : { elusiv: Elusiv}) => {
   const [reload, setReload] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const wallet = useWallet()
-
   const balances = useBalances(localElusiv, reload)
 
   const handleWithdraw = async() => {
@@ -42,7 +40,11 @@ const Withdraw = ({ elusiv } : { elusiv: Elusiv}) => {
       toast.success("Withdrawal successful");
       setLoading(false)
 
-      res.isConfirmed.then(() => setReload((prev) => prev + 1))
+      await Promise.resolve(res.isConfirmed)
+
+      console.log("Tx is confirmed");
+      
+      setReload((prev) => prev + 1)
 
     } catch (error) {
       console.log(error);
