@@ -1,12 +1,9 @@
 import type { NextPage } from "next";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { toast } from "react-toastify";
 import Head from "next/head";
 import { Elusiv } from "elusiv-sdk";
-// import { topup } from "../utils/elusiv";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import Dashboard from "../components/Dashboard";
 
@@ -56,6 +53,7 @@ const Home: NextPage = () => {
       <Head>
         <title>AnonPay | Private Payments</title>
         <link rel="icon" href="/anon-pay-logo.png" />
+        <link rel="preload" href="/Hubot-Sans.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </Head>
 
       {!elusiv || !wallet.publicKey ? ( // Login

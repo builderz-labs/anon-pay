@@ -1,14 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-/* @import url('https://fonts.cdnfonts.com/css/hubot-sans'); */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: 'Hubot-Sans';
-  src: url('/Hubot-Sans-RegularSemi.ttf') format('truetype');
-}
 
 /* Box sizing rules */
 *,
@@ -17,6 +9,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Hubot Sans';
+  src:
+    url('/Hubot-Sans.woff2') format('woff2 supports variations'),
+    url('/Hubot-Sans.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-stretch: 100% 125%;
+}
 
 #__next {
   width: 100%;
@@ -46,7 +46,7 @@ select {
 }
 
 body {
-  font-family: 'Hubot-Sans', sans-serif;
+  font-family: 'Hubot Sans', sans-serif;
   display: flex;
   margin: 0;
   text-align: center;
