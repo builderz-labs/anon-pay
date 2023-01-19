@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import AppBar from "../components/AppBar";
-import "../styles/globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
@@ -8,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import ContextProvider from "../contexts/ContextProvider";
 require("@solana/wallet-adapter-react-ui/styles.css");
+require("../styles/globals.css")
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
 import themes from "../components/themes";
