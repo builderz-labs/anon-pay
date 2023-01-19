@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { Elusiv, PrivateTxWrapper } from 'elusiv-sdk';
 
-export const useHistory = (elusiv: Elusiv) => {
+export const useHistory = (elusiv: Elusiv, reload: number) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [history, setHistory] = useState<PrivateTxWrapper[]>([]);
@@ -31,7 +31,7 @@ export const useHistory = (elusiv: Elusiv) => {
       fetchHistory()
     }
 
-  }, [elusiv]);
+  }, [elusiv, reload]);
 
   return {
     loading,

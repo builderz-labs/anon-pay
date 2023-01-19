@@ -60,7 +60,7 @@ const Home: NextPage = () => {
       {!elusiv || !wallet.publicKey ? ( // Login
         <div className="flex items-center justify-center my-4 md:my-24">
           <div className="p-12 rounded-lg bg-[#202327]">
-            <h2 className="mb-8">Login AnonPay</h2>
+            <h2 className="mb-8">Login</h2>
             <WalletMultiButtonDynamic className="glow my-4 !w-full" />
             <div className="text-sm">
               {/* <p>Enter your elusive password</p> */}

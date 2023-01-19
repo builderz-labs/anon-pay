@@ -4,9 +4,10 @@ import { Elusiv } from "elusiv-sdk";
 import { useState, useEffect } from "react"
 import { toast } from "react-toastify";
 import { useBalances } from "../hooks/useBalances";
+import { useHistory } from "../hooks/useHistory";
 import { topup } from "../utils/elusiv";
 
-const DepositModal = ({ elusiv } : { elusiv: Elusiv}) => {
+const DepositModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: number, setReload: any}) => {
 
   const [localElusiv, setLocalElusiv] = useState<Elusiv>(elusiv);
 
@@ -19,12 +20,9 @@ const DepositModal = ({ elusiv } : { elusiv: Elusiv}) => {
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("SOL");
 
-  const [reload, setReload] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const wallet = useWallet()
-
-  const balances = useBalances(localElusiv, reload)
 
   const handleTopup = async() => {
     if (amount <= 0) {
@@ -33,25 +31,26 @@ const DepositModal = ({ elusiv } : { elusiv: Elusiv}) => {
     }
 
     setLoading(true)
+    const toastId = toast.loading("Sending Transaction...")
 
     const tokenType = type === "SOL" ? "LAMPORTS" : type;
 
     try {
       const res = await topup(localElusiv, wallet, tokenType, amount * LAMPORTS_PER_SOL);
       console.log(res);
-      toast.success("Topup successful");
+      toast.update(toastId, {render: "Transaction sent, waiting for confirmation..."});
       setLoading(false)
+      setReload()
 
       await Promise.resolve(res.isConfirmed)
+      toast.update(toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
 
-      console.log("Tx is confirmed");
-      
-      setReload((prev) => prev + 1)
+      setReload()
       
     } catch (error) {
       console.log(error);
       setLoading(false)
-      toast.error("Failed to topup balance")
+      toast.update(toastId, {render: "Failed to topup balance", type: "error", autoClose: 5000, isLoading: false})
     }
   }
 

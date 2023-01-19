@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useBalances } from "../hooks/useBalances";
 import { topup, withdraw } from "../utils/elusiv";
 
-const Withdraw = ({ elusiv } : { elusiv: Elusiv}) => {
+const Withdraw = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: number, setReload: any}) => {
 
   const [localElusiv, setLocalElusiv] = useState<Elusiv>(elusiv);
 
@@ -19,10 +19,7 @@ const Withdraw = ({ elusiv } : { elusiv: Elusiv}) => {
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("SOL");
 
-  const [reload, setReload] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  const balances = useBalances(localElusiv, reload)
 
   const handleWithdraw = async() => {
     if (amount <= 0) {
@@ -31,25 +28,26 @@ const Withdraw = ({ elusiv } : { elusiv: Elusiv}) => {
     }
 
     setLoading(true)
+    const toastId = toast.loading("Sending Transaction...")
 
     const tokenType = type === "SOL" ? "LAMPORTS" : type;
 
     try {
       const res = await withdraw(localElusiv, tokenType, amount * LAMPORTS_PER_SOL);
       console.log(res);
-      toast.success("Withdrawal successful");
+      toast.update(toastId, {render: "Transaction sent, waiting for confirmation..."});
       setLoading(false)
+      setReload()
 
       await Promise.resolve(res.isConfirmed)
+      toast.update(toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
 
-      console.log("Tx is confirmed");
-      
-      setReload((prev) => prev + 1)
+      setReload()
 
     } catch (error) {
       console.log(error);
       setLoading(false)
-      toast.error("Failed to withdraw balance")
+      toast.update(toastId, {render: "Failed to withdraw balance", type: "error", autoClose: 5000, isLoading: false})
     }
   }
 

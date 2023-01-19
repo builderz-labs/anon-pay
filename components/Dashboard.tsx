@@ -12,6 +12,7 @@ import SendModal from "./SendModal";
 const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
 
   const [localElusiv, setLocalElusiv] = useState<Elusiv>(elusiv);
+  const [reload, setReload] = useState(0);
 
   useEffect(() => {
     console.log("Updating Elusiv");
@@ -19,8 +20,8 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
     setLocalElusiv(elusiv)
   }, [elusiv])
 
-  const balances = useBalances(localElusiv);
-  const history = useHistory(localElusiv);
+  const balances = useBalances(localElusiv, reload);
+  const history = useHistory(localElusiv, reload);
 
   return (
     <div className="p-4 md:p-12 rounded-lg bg-[#374D3D] w-fit mx-auto my-12">
@@ -68,7 +69,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
           </div>
           {!history.loading && !history.error && history.history.length ? (history.history.map(tx => (
             <>
-            <TransactionListItem tx={tx} />
+            <TransactionListItem tx={tx} key={tx.sig.signature} />
             <div className="divider"></div>
             </>
           ))) : (
@@ -80,9 +81,9 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
           )}
         </div>
       </div>
-      <DepositModal elusiv={localElusiv!} />
-      <WithdrawModal elusiv={localElusiv!} />
-      <SendModal elusiv={localElusiv!} />
+      <DepositModal elusiv={localElusiv!} reload={reload} setReload={(() => setReload(((prev) => prev + 1 )))} />
+      <WithdrawModal elusiv={localElusiv!} reload={reload} setReload={(() => setReload(((prev) => prev + 1 )))} />
+      <SendModal elusiv={localElusiv!} reload={reload} setReload={(() => setReload(((prev) => prev + 1 )))} />
     </div>
   )
 }
