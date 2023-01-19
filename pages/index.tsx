@@ -53,7 +53,6 @@ const Home: NextPage = () => {
       <Head>
         <title>AnonPay | Private Payments</title>
         <link rel="icon" href="/anon-pay-logo.png" />
-        <link rel="preload" href="/Hubot-Sans.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </Head>
 
       {!elusiv || !wallet.publicKey ? ( // Login

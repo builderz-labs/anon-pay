@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import localFont from '@next/font/local'
 import AppBar from "../components/AppBar";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,11 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import themes from "../components/themes";
 import dynamic from "next/dynamic";
 
-const WalletMultiButtonDynamic = dynamic(
-  async () =>
-    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
-  { ssr: false }
-);
+const myFont = localFont({ src: '../public/Hubot-Sans.woff2' })
 
 function MyApp({ Component, pageProps }: AppProps) {
   // Get OS-level preference for dark mode
@@ -35,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   return (
+    <div className={myFont.className}>
     <ThemeProvider theme={theme} >
       <ContextProvider>
         <CssBaseline enableColorScheme />
@@ -57,6 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         theme={theme.palette.mode === "dark" ? "light" : "dark"}
       />
     </ThemeProvider>
+    </div>
   );
 }
 
