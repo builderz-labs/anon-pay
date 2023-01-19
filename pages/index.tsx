@@ -54,14 +54,14 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elusiv | Private Payments</title>
-        <link rel="icon" href="/logo_transparent.png" />
+        <title>AnonPay | Private Payments</title>
+        <link rel="icon" href="/anon-pay-logo.png" />
       </Head>
 
       {!elusiv || !wallet.publicKey ? ( // Login
         <div className="flex items-center justify-center my-4 md:my-24">
           <div className="p-12 rounded-lg bg-[#202327]">
-            <h2 className="mb-8">Login Elusiv</h2>
+            <h2 className="mb-8">Login AnonPay</h2>
             <WalletMultiButtonDynamic className="glow my-4 !w-full" />
             <div className="text-sm">
               {/* <p>Enter your elusive password</p> */}
