@@ -9,7 +9,7 @@ const TransactionListItem = ({ tx } : { tx: PrivateTxWrapper }) => {
   }
 
   return (
-    <div className="flex w-full md:space-x-24 items-center justify-between" key={tx.sig.signature}>
+    <div className="flex w-full md:space-x-24 items-center justify-between">
       <div className="text-left md:flex md:space-x-24 md:items-center md:justify-between">
         <span className="badge md:badge-lg p-2">{tx.txType}</span>
         <p className="mt-4 md:mt-0"><span className="font-bold text-xl">{tx.amount / LAMPORTS_PER_SOL}</span> {tx.tokenType === "LAMPORTS" ? "SOL" : tx.tokenType}</p>

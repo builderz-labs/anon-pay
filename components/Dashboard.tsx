@@ -43,20 +43,37 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
           <div className="stats bg-[#293a2e] stats-vertical text-left text-primary-content">
             <div className="stat">
               <div className="stat-title">SOL balance</div>
-              <div className="stat-value">{(balances.elusivBalanceSOL / LAMPORTS_PER_SOL).toFixed(2)}</div>
-              <div className="stat-desc">In wallet {balances.walletBalanceSOL.toFixed(2)}</div>
+              {balances.loading ? (
+                <progress className="progress w-full my-2"></progress>
+              ) : (
+                <>
+                <div className="stat-value">{(balances.elusivBalanceSOL / LAMPORTS_PER_SOL).toFixed(2)}</div>
+                <div className="stat-desc">In wallet {balances.walletBalanceSOL.toFixed(2)}</div>
+                </>
+              )}
+              
             </div>
-            
             <div className="stat">
               <div className="stat-title">USDC balance</div>
-              <div className="stat-value">{balances.elusivBalanceUSDC.toFixed(2)}</div>
-              <div className="stat-desc">In wallet {balances.walletBalanceUSDC.toFixed(2)}</div>
+              {balances.loading ? (
+                <progress className="progress w-full my-2"></progress>
+              ) : (
+                <>
+                  <div className="stat-value">{balances.elusivBalanceUSDC.toFixed(2)}</div>
+                  <div className="stat-desc">In wallet {balances.walletBalanceUSDC.toFixed(2)}</div>
+                </>
+              )}
             </div>
-
             <div className="stat">
               <div className="stat-title">USDT balance</div>
-              <div className="stat-value">{balances.elusivBalanceUSDT.toFixed()}</div>
-              <div className="stat-desc">In wallet {balances.walletBalanceUSDT.toFixed(2)}</div>
+              {balances.loading ? (
+                <progress className="progress w-full my-2"></progress>
+              ) : (
+                <>
+                  <div className="stat-value">{balances.elusivBalanceUSDT.toFixed()}</div>
+                  <div className="stat-desc">In wallet {balances.walletBalanceUSDT.toFixed(2)}</div>
+                </>
+              )}
             </div>          
           </div>
         </div>
@@ -68,10 +85,10 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
             <div className="divider !mt-0"></div>
           </div>
           {!history.loading && !history.error && history.history.length ? (history.history.map(tx => (
-            <>
-            <TransactionListItem tx={tx} key={tx.sig.signature} />
+            <div key={tx.sig.signature}>
+            <TransactionListItem tx={tx} />
             <div className="divider"></div>
-            </>
+            </div>
           ))) : (
             <>
             {history.loading && <progress className="progress md:w-96"></progress>}

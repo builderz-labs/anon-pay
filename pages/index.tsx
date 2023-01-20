@@ -67,7 +67,8 @@ const Home: NextPage = () => {
               <input type="password" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter Password" className="input w-full max-w-xs" required />
             </div>
             <div className="divider"></div>
-            <button onClick={createElusivInstance} className={"btn btn glass w-full my-2" + (loading && " loading")}>Login</button>
+            <button onClick={createElusivInstance} className={"btn btn glass w-full mx-2" + (loading && " loading")} disabled={input === ""}>Login</button>
+            <p className="text-center text-xs text-inherit stat-title mt-4">Powered by Dynamic Labs</p>
           </div>
         </div>
         
