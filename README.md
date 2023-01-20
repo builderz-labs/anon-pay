@@ -19,14 +19,21 @@ At login you’re required to enter a password. This is not stored anywhere but 
 
 Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.app/)
 
+> **Note**
+> Elusiv is only available on devnet currently - our app interacts with devnet
+
 ---
+
 Feel free to give us any feedback or questions. You can contact us best on discord or twitter.
-[@KultureElectric](https://twitter.com/KultureElectric) | [@Web3Wiz](https://twitter.com/Web3Wiz)
+[@KultureElectric](https://twitter.com/KultureElectric) | Kulture#0001
 :-------------------------:|:-------------------------:
-Kulture#0001 | Web3Wiz#1977
+[@Web3Wiz](https://twitter.com/Web3Wiz) | Web3Wiz#1977
+
 
 **And don't forget to leave a vote for the Sandstorm Hackathon 🙏**
+
 ---
+
 ## Preview
 
 Responsive                     |  Desktop
