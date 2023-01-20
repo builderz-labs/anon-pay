@@ -1,12 +1,11 @@
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useConnection } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { Elusiv } from "elusiv-sdk";
 import { useState, useEffect } from "react"
 import { toast } from "react-toastify";
-import { useBalances } from "../hooks/useBalances";
 import { send } from "../utils/elusiv";
 
-const SendModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: number, setReload: any}) => {
+const SendModal = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) => {
 
   const [localElusiv, setLocalElusiv] = useState<Elusiv>(elusiv);
 
@@ -16,11 +15,13 @@ const SendModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: num
     setLocalElusiv(elusiv)
   }, [elusiv])
 
+  const { connection } = useConnection();
+
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("SOL");
   const [recipient, setRecipient] = useState("")
-
   const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleSend = async() => {
     if (amount <= 0) {
@@ -28,33 +29,38 @@ const SendModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: num
       return;
     }
 
+    if (recipient.length < 32 || recipient.length > 44) {
+      toast.error("Choose a valid address")
+      return;
+    }
+
     setLoading(true)
-    const toastId = toast.loading("Sending Transaction...")
 
     const tokenType = type === "SOL" ? "LAMPORTS" : type;
 
-    try {
-      const res = await send(localElusiv, tokenType, amount * LAMPORTS_PER_SOL, new PublicKey(recipient));
-      console.log(res);
-      toast.update(toastId, {render: "Transaction sent, waiting for confirmation..."});
-      setLoading(false)
+    const res = await send(localElusiv, tokenType, amount * LAMPORTS_PER_SOL, new PublicKey(recipient), connection);
+    
+    setLoading(false)
+    setModalOpen(false)
+    setReload()
+
+    if (res) {
+      try {
+        await Promise.resolve(res.res.isConfirmed)
+        toast.update(res.toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
+      } catch (error) {
+        console.log(error);
+        setLoading(false)
+        toast.update(res.toastId, {render: "Something went wrong, please try again", type: "error", autoClose: 5000, isLoading: false})
+      }
+
       setReload()
-
-      await Promise.resolve(res.isConfirmed)
-      toast.update(toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
-
-      setReload()
-
-    } catch (error) {
-      console.log(error);
-      setLoading(false)
-      toast.update(toastId, {render: "Failed to send transaction", type: "error", autoClose: 5000, isLoading: false})
-    }
+    } 
   }
 
   return (
     <>
-      <input type="checkbox" id="send" className="modal-toggle" />
+      <input type="checkbox" id="send" className="modal-toggle" checked={modalOpen} onChange={() => {setModalOpen((prev) => !prev); setAmount(0); setRecipient("")}} />
       <label htmlFor="send" className="modal cursor-pointer">
         <label className="modal-box relative bg-[#fdf3d9] flex flex-col items-center justify-center" htmlFor="">
           <p className="text-lg font-bold mb-4 text-gray-700 text-left">Send private transaction</p>

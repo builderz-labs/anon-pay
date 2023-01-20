@@ -1913,7 +1913,7 @@
 
 "@solana/pay@^0.2.4":
   version "0.2.4"
-  resolved "https://registry.npmjs.org/@solana/pay/-/pay-0.2.4.tgz"
+  resolved "https://registry.yarnpkg.com/@solana/pay/-/pay-0.2.4.tgz#5de8f187fdbd39839fa97c8e72450804757f14c9"
   integrity sha512-noJHpq56vRY25X2AZlyhEjzZ3x9No88SlkT3I1+DZJyyR6pofVQK1gwHScYwvWbOUZrcsDFmHgrZ3shXudOMNg==
   dependencies:
     "@solana/qr-code-styling" "^1.6.0-beta.0"

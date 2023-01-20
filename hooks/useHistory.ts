@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { Elusiv, PrivateTxWrapper } from 'elusiv-sdk';
 
 export const useHistory = (elusiv: Elusiv, reload: number) => {
@@ -11,8 +11,7 @@ export const useHistory = (elusiv: Elusiv, reload: number) => {
 
   useEffect(() => {
     const fetchHistory = async() => {
-      setLoading(true);
-      setHistory([])
+      !history.length && setLoading(true);
       
       try {
         const history = await elusiv.getPrivateTransactions(5);        
