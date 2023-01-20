@@ -99,8 +99,8 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
         </div>
       </div>
       <DepositModal elusiv={localElusiv!} reload={reload} setReload={(() => setReload(((prev) => prev + 1 )))} />
-      <WithdrawModal elusiv={localElusiv!} reload={reload} setReload={(() => setReload(((prev) => prev + 1 )))} />
-      <SendModal elusiv={localElusiv!} reload={reload} setReload={(() => setReload(((prev) => prev + 1 )))} />
+      <WithdrawModal elusiv={localElusiv!} setReload={(() => setReload(((prev) => prev + 1 )))} />
+      <SendModal elusiv={localElusiv!} setReload={(() => setReload(((prev) => prev + 1 )))} />
     </div>
   )
 }
