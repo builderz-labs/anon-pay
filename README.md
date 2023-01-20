@@ -17,7 +17,7 @@ You can also check all your balances as well as see your private transaction his
 
 At login you’re required to enter a password. This is not stored anywhere but Elusiv needs it create a reference to your private balance. Remember it, or you will lose access to your funds!
 
-Check out the demo-video or try it our yourself ![HERE](https://anonpay.vercel.app/)
+Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.app/)
 
 > **Note**
 > Elusiv is only available on devnet currently - our app interacts with devnet
@@ -25,9 +25,9 @@ Check out the demo-video or try it our yourself ![HERE](https://anonpay.vercel.a
 ---
 
 Feel free to give us any feedback or questions. You can contact us best on discord or twitter.
-![@KultureElectric](https://twitter.com/KultureElectric) | Kulture#0001
+[@KultureElectric](https://twitter.com/KultureElectric) | Kulture#0001
 :-------------------------:|:-------------------------:
-![@Web3Wiz](https://twitter.com/Web3Wiz) | Web3Wiz#1977
+[@Web3Wiz](https://twitter.com/Web3Wiz) | Web3Wiz#1977
 
 
 **And don't forget to leave a vote for the Sandstorm Hackathon 🙏**
@@ -55,7 +55,7 @@ NEXT_PUBLIC_RPC_URL=<DEVNET_RPC>
 ```bash
 yarn dev
 ```
-5. Get Devnet SOL ![HERE](https://sol-faucet.avaulto.com/)
+5. Get Devnet SOL [HERE](https://sol-faucet.avaulto.com/)
 
-6. Play around
+6. Play
 
