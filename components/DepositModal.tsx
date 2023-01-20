@@ -1,11 +1,9 @@
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { Elusiv } from "elusiv-sdk";
 import { useState, useEffect } from "react"
 import { toast } from "react-toastify";
-import { useBalances } from "../hooks/useBalances";
-import { useHistory } from "../hooks/useHistory";
-import { topup } from "../utils/elusiv";
+import { sleep, topup } from "../utils/elusiv";
 
 const DepositModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: number, setReload: any}) => {
 
@@ -23,6 +21,7 @@ const DepositModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: 
   const [loading, setLoading] = useState(false);
 
   const wallet = useWallet()
+  const { connection } = useConnection()
 
   const handleTopup = async() => {
     if (amount <= 0) {
@@ -36,8 +35,13 @@ const DepositModal = ({ elusiv, reload, setReload } : { elusiv: Elusiv, reload: 
     const tokenType = type === "SOL" ? "LAMPORTS" : type;
 
     try {
-      const res = await topup(localElusiv, wallet, tokenType, amount * LAMPORTS_PER_SOL);
+      const res = await topup(localElusiv, wallet, tokenType, amount * LAMPORTS_PER_SOL, connection);
+      await sleep(1000);
       console.log(res);
+      console.log(res.sig.signature);
+      
+      
+      
       toast.update(toastId, {render: "Transaction sent, waiting for confirmation..."});
       setLoading(false)
       setReload()
