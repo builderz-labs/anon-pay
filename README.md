@@ -1,5 +1,5 @@
 # AnonPay
-[AnonPay](/public/anon-pay-logo-with-text.png)
+![AnonPay](/public/anon-pay-logo-with-text.png)
 
 AnonPay is a Dashboard to make private payments with Elusiv. It’s build on-top of their SDK enabling all current features.
 
@@ -24,4 +24,21 @@ Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.ap
 
 Responsive                     |  Desktop
 :-------------------------:|:-------------------------:
-![AnonPay Mobile](/public/AnonPay-Mobile.png)  |  ![AnonPay Desktop](/publicAnonPay-Desktop.png)
+![AnonPay Mobile](/public/AnonPay-Mobile.png)  |  ![AnonPay Desktop](/public/AnonPay-Desktop.png)
+
+### Getting Started
+
+1. Clone this repository
+2. Install dependencies
+```bash
+yarn install
+```
+3. Add .env file
+```
+NEXT_PUBLIC_RPC_URL=<DEVNET_RPC>
+```
+4. Run in local environment
+```bash
+yarn dev
+```
+
