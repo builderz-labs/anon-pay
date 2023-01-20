@@ -55,4 +55,7 @@ NEXT_PUBLIC_RPC_URL=<DEVNET_RPC>
 ```bash
 yarn dev
 ```
+5. Get Devnet SOL [HERE](https://sol-faucet.avaulto.com/)
+
+6. Play around
 
