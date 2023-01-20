@@ -21,10 +21,11 @@ Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.ap
 
 ---
 Feel free to give us any feedback or questions. You can contact us best on discord or twitter.
-[@KultureElectric](https://twitter.com/KultureElectric)
-[@Web3Wiz](https://twitter.com/Web3Wiz)
+[@KultureElectric](https://twitter.com/KultureElectric) | [@Web3Wiz](https://twitter.com/Web3Wiz)
+:-------------------------:|:-------------------------:
+Kulture#0001 | Web3Wiz#1977
 
-**And don't forget to leave a vote for the Sandstorm Hackathon. Much appreciated!**
+**And don't forget to leave a vote for the Sandstorm Hackathon 🙏**
 ---
 ## Preview
 
