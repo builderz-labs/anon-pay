@@ -19,10 +19,10 @@ At login you’re required to enter a password. This is not stored anywhere but 
 
 Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.app/)
 
+---
 
 > **Note**
 > Elusiv is only available on devnet currently - our app interacts with devnet
-
 
 ---
 
