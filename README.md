@@ -1,5 +1,5 @@
 # AnonPay
-[AnonPay](anon-pay-logo-with-text.png)
+[AnonPay](/public/anon-pay-logo-with-text.png)
 
 AnonPay is a Dashboard to make private payments with Elusiv. It’s build on-top of their SDK enabling all current features.
 
@@ -24,4 +24,4 @@ Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.ap
 
 Responsive                     |  Desktop
 :-------------------------:|:-------------------------:
-![AnonPay Mobile](AnonPay-Mobile.png)  |  ![AnonPay Desktop](AnonPay-Desktop.png)
+![AnonPay Mobile](/public/AnonPay-Mobile.png)  |  ![AnonPay Desktop](/publicAnonPay-Desktop.png)
