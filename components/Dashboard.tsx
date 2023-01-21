@@ -91,11 +91,12 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
             </div>
           ))) : (
             <>
-            {history.loading && <progress className="progress md:w-96"></progress>}
-            {history.error && <div className="md:w-96 text-left">There was an error</div>}
-            {(history.history.length === 0 && !history.loading && !history.error) && <div className="md:w-96 text-left">No transactions yet</div>}
+            {history.loading && <div className="grow"><progress className="progress md:w-96 mb-2"></progress></div>}
+            {history.error && <div className="md:w-96 text-left grow">There was an error</div>}
+            {(history.history.length === 0 && !history.loading && !history.error) && <div className="md:w-96 text-left grow">No transactions yet</div>}
             </>
           )}
+          <p className="md:text-left text-xs text-inherit stat-title justify-self-end grow-0">Powered by Dynamic Labs & Elusiv</p>
         </div>
       </div>
       <DepositModal elusiv={localElusiv!} setReload={(() => setReload(((prev) => prev + 1 )))} />
