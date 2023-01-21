@@ -96,7 +96,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
             {(history.history.length === 0 && !history.loading && !history.error) && <div className="md:w-96 text-left grow">No transactions yet</div>}
             </>
           )}
-          <p className="md:text-left text-xs text-inherit stat-title justify-self-end grow-0">Powered by Dynamic Labs & Elusiv</p>
+          <p className="text-left text-xs text-inherit stat-title justify-self-end grow-0">Powered by Dynamic Labs & Elusiv</p>
         </div>
       </div>
       <DepositModal elusiv={localElusiv!} setReload={(() => setReload(((prev) => prev + 1 )))} />
