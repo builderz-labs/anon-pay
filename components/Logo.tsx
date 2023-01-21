@@ -3,11 +3,7 @@ import Link from "next/link";
 import React from "react";
 import TextLogo from "../public/anon-pay-logo-with-text.png"
 
-import { useTheme } from "@mui/material";
-
 export const Logo = () => {
-  const theme = useTheme();
-
   return (
     <Link href="/" passHref>
       <Image

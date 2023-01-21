@@ -4,7 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import dynamic from "next/dynamic";
-import ThemeSwitcherComponent from "./ThemeSwitcher";
 import { Logo } from "./Logo";
 
 const WalletMultiButtonDynamic = dynamic(
