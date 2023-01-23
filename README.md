@@ -17,7 +17,14 @@ You can also check all your balances as well as see your private transaction his
 
 At login you’re required to enter a password. This is not stored anywhere but Elusiv needs it create a reference to your private balance. Remember it, or you will lose access to your funds!
 
-Check out the demo-video or try it our yourself [HERE](https://anonpay.vercel.app/)
+Check out the [demo-video](https://www.loom.com/share/713cc216b3e54653b107611c8416682d) or try it our yourself following the "Getting Started" instructions
+
+---
+
+> **Note**
+> Currently only working in localhost because Elusiv Warden Network is based on HTTP requests which the browser blocks
+
+---
 
 ---
 
