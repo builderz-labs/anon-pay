@@ -85,7 +85,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
             <div className="divider !mt-0"></div>
           </div>
           {!history.loading && !history.error && history.history.length ? (history.history.map(tx => (
-            <div key={tx.sig.signature}>
+            <div className="grow" key={tx.sig.signature}>
             <TransactionListItem tx={tx} />
             <div className="divider"></div>
             </div>
