@@ -27,7 +27,7 @@
     "@solana/web3.js": "^1.72.0",
     "bignumber.js": "^9.1.1",
     "daisyui": "^2.42.0",
-    "elusiv-sdk": "file:./elusiv-sdk-react-1.0.0.tgz",
+    "elusiv-sdk": "file:./elusiv-sdk-frontend-1.0.11.tgz",
     "next": "13.1.2",
     "next-themes": "^0.2.1",
     "react": "^18.2",

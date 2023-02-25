@@ -31,10 +31,13 @@ const Home: NextPage = () => {
     setElusiv(null)
 
     if (wallet.publicKey && wallet.signMessage) {
-      const seed = Elusiv.hashPw(input);      
+      const seed = Elusiv.hashPw(input);
+
+      const encoder = new TextEncoder();
+      const messageUint8 = encoder.encode(seed);      
 
       try {
-        const signedSeed = await wallet.signMessage(new TextEncoder().encode(seed));
+        const signedSeed = await wallet.signMessage(messageUint8);
         // Create the elusiv instance
         const elusiv = await Elusiv.getElusivInstance(signedSeed, wallet.publicKey, connection);
         setElusiv(elusiv)

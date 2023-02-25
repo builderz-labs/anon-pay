@@ -41,7 +41,7 @@ const DepositModal = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any})
 
     if (res) {
       try {
-        await Promise.resolve(res.res.isConfirmed)
+        // await Promise.resolve(res.res.)
         toast.update(res.toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
 
       } catch (error) {

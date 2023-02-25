@@ -15,7 +15,7 @@ export const topup = async(elusiv: Elusiv, wallet: any, tokenType: any, amount: 
     const res = await elusiv.sendElusivTx(topupTx);
 
     const confirmation = await connection.confirmTransaction({
-      signature: res.sig.signature,
+      signature: res.signature,
       lastValidBlockHeight: topupTx.tx.lastValidBlockHeight!,
       blockhash: topupTx.tx.recentBlockhash!
     }, "finalized")
