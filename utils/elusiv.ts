@@ -47,8 +47,9 @@ export const send = async(elusiv: Elusiv, tokenType: any, amount: number, recipi
     toast.update(toastId, {render: "Sending Transaction..."});
 
 
-    const res = await elusiv.sendElusivTx(sendTx);
-    await awaitSolanaPayConfirmation(refKey.publicKey, connection);
+    const res = await elusiv.sendElusivTxWithTracking(sendTx);
+    await res.commitmentInsertionPromise;
+    // await awaitSolanaPayConfirmation(refKey.publicKey, connection);
     toast.update(toastId, {render: "Action successful, Waiting for Elusiv confirmation..."});
 
     return { res, toastId }

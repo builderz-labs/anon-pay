@@ -30,7 +30,7 @@ export const useHistory = (elusiv: Elusiv, reload: number) => {
       fetchHistory()
     }
 
-  }, [elusiv, reload]);
+  }, [elusiv, reload, wallet.publicKey, history.length]);
 
   return {
     loading,
