@@ -19,12 +19,6 @@ At login you’re required to enter a password. This is not stored anywhere but 
 
 Check out the [demo-video](https://www.loom.com/share/713cc216b3e54653b107611c8416682d) or try it our yourself following the "Getting Started" instructions
 
----
-
-> **Note**
-> Currently only working in localhost because Elusiv Warden Network is based on HTTP requests which the browser blocks
-
----
 
 ---
 

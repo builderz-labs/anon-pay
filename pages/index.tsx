@@ -70,7 +70,7 @@ const Home: NextPage = () => {
               <input type="password" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter Password" className="input w-full max-w-xs" required />
             </div>
             <div className="divider"></div>
-            <button onClick={createElusivInstance} className={"btn btn glass w-full mx-2" + (loading && " loading")} disabled={input === ""}>Login</button>
+            <button onClick={createElusivInstance} className={"btn glass w-full mx-2" + (loading && " loading")} disabled={input === ""}>Login</button>
             <p className="text-center text-xs text-inherit stat-title mt-4">Powered by Builderz & Elusiv</p>
           </div>
         </div>
