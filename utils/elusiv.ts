@@ -7,9 +7,11 @@ export const topup = async(elusiv: Elusiv, wallet: any, tokenType: any, amount: 
   const toastId = toast.loading("Building Transaction...")
 
   try {
-    const topupTx = await elusiv.buildTopUpTx(amount, tokenType);
+    let topupTx = await elusiv.buildTopUpTx(amount, tokenType);
 
-    await wallet.signTransaction(topupTx.tx);
+    const signedTx = await wallet.signTransaction(topupTx.tx);
+    topupTx.tx = signedTx;
+
     toast.update(toastId, {render: "Sending Transaction..."});
 
     const res = await elusiv.sendElusivTx(topupTx);
