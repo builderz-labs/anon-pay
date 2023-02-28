@@ -67,7 +67,7 @@ const DepositModal = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any})
                 <option value={"USDC"}>USDC</option>
                 <option value={"USDT"}>USDT</option>
               </select>
-              <input type="number" value={amount} onChange={((e) => setAmount(e.target.valueAsNumber))} className="input input-bordered w-28 md:w-56" />
+              <input type="number" step={0.000001} min={0} value={amount.toString()} onChange={((e) => !isNaN(e.target.valueAsNumber) && setAmount(e.target.valueAsNumber))} className="input input-bordered w-28 md:w-56" />
               <button onClick={handleTopup} className={"btn " + (loading && " loading")}>Go</button>
             </div>
           </div>

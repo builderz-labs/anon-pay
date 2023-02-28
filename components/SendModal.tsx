@@ -70,10 +70,10 @@ const SendModal = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) =>
                 <option value={"USDC"}>USDC</option>
                 <option value={"USDT"}>USDT</option>
               </select>
-              <input type="number" value={amount} onChange={((e) => setAmount(e.target.valueAsNumber))} className="input input-bordered w-44 md:w-56" />
+              <input type="number" step={0.000001} min={0} value={amount.toString()} onChange={((e) => !isNaN(e.target.valueAsNumber) && setAmount(e.target.valueAsNumber))} className="input input-bordered w-44 md:w-56" />
             </div>
             <div className="input-group mt-2">
-              <input type="text" value={recipient} placeholder="Recipient Address" onChange={(e) => setRecipient(e.target.value)} className="input input-bordered w-full w-56 md:w-72" />
+              <input type="text" value={recipient} placeholder="Recipient Address" onChange={(e) => setRecipient(e.target.value)} className="input input-bordered w-56 md:w-72" />
               <button onClick={handleSend} className={"btn " + (loading && " loading")}>Go</button>
             </div>
           </div>
