@@ -19,13 +19,13 @@ const Withdraw = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) => 
   const { connection } = useConnection();
 
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("0");
   const [type, setType] = useState("SOL");
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleWithdraw = async() => {
-    if (amount <= 0) {
+    if (Number(amount) <= 0) {
       toast.error("Select a valid amount");
       return;
     }
@@ -34,7 +34,7 @@ const Withdraw = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) => 
 
     const tokenType = type === "SOL" ? "LAMPORTS" : type;
 
-    const res = await send(localElusiv, tokenType, amount * LAMPORTS_PER_SOL, wallet.publicKey!, connection);
+    const res = await send(localElusiv, tokenType, Number(amount) * LAMPORTS_PER_SOL, wallet.publicKey!, connection);
     
     setLoading(false)
     setModalOpen(false)
@@ -55,7 +55,7 @@ const Withdraw = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) => 
 
   return (
     <>
-      <input type="checkbox" id="withdraw" className="modal-toggle" checked={modalOpen} onChange={() => {setModalOpen((prev) => !prev); setAmount(0)}} />
+      <input type="checkbox" id="withdraw" className="modal-toggle" checked={modalOpen} onChange={() => {setModalOpen((prev) => !prev); setAmount("0")}} />
       <label htmlFor="withdraw" className="modal cursor-pointer">
         <label className="modal-box relative bg-[#fdf3d9] flex flex-col items-center justify-center" htmlFor="">
           <p className="text-lg font-bold mb-4 text-gray-700 text-left">Withdraw from your private balance</p>
@@ -66,7 +66,7 @@ const Withdraw = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) => 
                 <option value={"USDC"}>USDC</option>
                 <option value={"USDT"}>USDT</option>
               </select>
-              <input type="number" step={0.000001} min={0} value={amount.toString()} onChange={((e) => !isNaN(e.target.valueAsNumber) && setAmount(e.target.valueAsNumber))} className="input input-bordered w-28 md:w-56" />
+              <input type="number" step="any" min="0" value={amount} onChange={((e) => setAmount(e.target.value))} className="input input-bordered w-28 md:w-56" />
               <button onClick={handleWithdraw} className={"btn " + (loading && " loading")}>Go</button>
             </div>
           </div>
