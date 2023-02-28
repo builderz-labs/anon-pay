@@ -37,16 +37,16 @@ const DepositModal = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any})
 
     setLoading(false)
     setModalOpen(false)
+
     setReload()
 
     if (res) {
       try {
-        // await Promise.resolve(res.res.)
+        await res.res.commitmentInsertionPromise
         toast.update(res.toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
 
       } catch (error) {
         console.log(error);
-        setLoading(false)
         toast.update(res.toastId, {render: "Something went wrong, please try again", type: "error", autoClose: 5000, isLoading: false})
       }
     }

@@ -42,11 +42,10 @@ const Withdraw = ({ elusiv, setReload } : { elusiv: Elusiv, setReload: any}) => 
 
     if (res) {
       try {
-        // await Promise.resolve(res.res.isConfirmed)
+        await res.res.commitmentInsertionPromise
         toast.update(res.toastId, {render: "Transaction confirmed!", type: "success", autoClose: 5000, isLoading: false})
       } catch (error) {
         console.log(error);
-        setLoading(false)
         toast.update(res.toastId, {render: "Something went wrong, please try again", type: "error", autoClose: 5000, isLoading: false})
       }
 

@@ -10,18 +10,20 @@ export const topup = async(elusiv: Elusiv, wallet: any, tokenType: any, amount: 
     let topupTx = await elusiv.buildTopUpTx(amount, tokenType);
 
     const signedTx = await wallet.signTransaction(topupTx.tx);
+    signedTx.lastValidBlockHeight = (await connection.getLatestBlockhash()).lastValidBlockHeight;
     topupTx.tx = signedTx;
-
+    
     toast.update(toastId, {render: "Sending Transaction..."});
 
-    const res = await elusiv.sendElusivTx(topupTx);
+    const res = await elusiv.sendElusivTxWithTracking(topupTx);
 
-    const confirmation = await connection.confirmTransaction({
-      signature: res.signature,
+    await connection.confirmTransaction({
+      signature: res.elusivTxSig.signature,
       lastValidBlockHeight: topupTx.tx.lastValidBlockHeight!,
       blockhash: topupTx.tx.recentBlockhash!
-    }, "finalized")
-    toast.update(toastId, {render: "Action successful, Waiting for Elusiv confirmation..."});    
+    }, "finalized");
+
+    toast.update(toastId, {render: "Action successful, Waiting for Elusiv confirmation..."});
 
     return { res, toastId }
   } catch (error) {
@@ -48,10 +50,9 @@ export const send = async(elusiv: Elusiv, tokenType: any, amount: number, recipi
     const sendTx = await elusiv.buildSendTx(amount, recipient, tokenType , refKey.publicKey);
     toast.update(toastId, {render: "Sending Transaction..."});
 
-
     const res = await elusiv.sendElusivTxWithTracking(sendTx);
-    await res.commitmentInsertionPromise;
-    // await awaitSolanaPayConfirmation(refKey.publicKey, connection);
+
+    await awaitSolanaPayConfirmation(refKey.publicKey, connection);
     toast.update(toastId, {render: "Action successful, Waiting for Elusiv confirmation..."});
 
     return { res, toastId }
