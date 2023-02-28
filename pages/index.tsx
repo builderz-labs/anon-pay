@@ -71,7 +71,7 @@ const Home: NextPage = () => {
             </div>
             <div className="divider"></div>
             <button onClick={createElusivInstance} className={"btn btn glass w-full mx-2" + (loading && " loading")} disabled={input === ""}>Login</button>
-            <p className="text-center text-xs text-inherit stat-title mt-4">Powered by Dynamic Labs & Elusiv</p>
+            <p className="text-center text-xs text-inherit stat-title mt-4">Powered by Builderz & Elusiv</p>
           </div>
         </div>
         
