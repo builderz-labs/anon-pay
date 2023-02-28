@@ -70,7 +70,7 @@ const Dashboard = ({ elusiv } : { elusiv: Elusiv}) => {
                 <progress className="progress w-full my-2"></progress>
               ) : (
                 <>
-                  <div className="stat-value">{balances.elusivBalanceUSDT.toFixed()}</div>
+                  <div className="stat-value">{balances.elusivBalanceUSDT.toFixed(2)}</div>
                   <div className="stat-desc">In wallet {balances.walletBalanceUSDT.toFixed(2)}</div>
                 </>
               )}
